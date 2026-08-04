@@ -1,0 +1,35 @@
+[
+  {
+    "id": "orion-estate",
+    "title": "ORION ESTATE",
+    "category": "WEB / CRM",
+    "summary": "Сайт премиальной недвижимости с автоматическим распределением лидов между брокерами.",
+    "year": "2026",
+    "accent": "#d7ff45",
+    "imageKey": null,
+    "imageUrl": null,
+    "createdAt": "2026-07-20T10:00:00.000Z"
+  },
+  {
+    "id": "pulse-clinic",
+    "title": "PULSE CLINIC",
+    "category": "PRODUCT / AI",
+    "summary": "Цифровая запись и AI-ассистент, который отвечает пациентам круглосуточно.",
+    "year": "2026",
+    "accent": "#9b8cff",
+    "imageKey": null,
+    "imageUrl": null,
+    "createdAt": "2026-06-11T10:00:00.000Z"
+  },
+  {
+    "id": "mono-market",
+    "title": "MONO MARKET",
+    "category": "E-COM / AUTOMATION",
+    "summary": "Магазин с единой системой заказов, складом и автоматическими сценариями продаж.",
+    "year": "2025",
+    "accent": "#ff6b4a",
+    "imageKey": null,
+    "imageUrl": null,
+    "createdAt": "2025-12-03T10:00:00.000Z"
+  }
+]
