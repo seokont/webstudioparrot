@@ -1,23 +1,19 @@
 <script setup lang="ts">
-import { ArrowDownRight, ArrowUpRight } from '@lucide/vue'
+import { ArrowDownRight, ArrowUpRight, Check, ChevronDown, Send } from '@lucide/vue'
 import type { PortfolioItem } from '~/types/portfolio'
 
-const { t, te, locale } = useI18n()
+const { t, te, locale, getLocaleMessage } = useI18n()
 const localePath = useLocalePath()
-const switchLocalePath = useSwitchLocalePath()
+const route = useRoute()
 
 const { data: portfolio } = await useFetch<PortfolioItem[]>('/api/portfolio', {
   default: () => []
 })
 
-const languages = [
-  { code: 'uk', label: 'UA', name: 'Українська', dir: 'ltr' },
-  { code: 'en', label: 'EN', name: 'English', dir: 'ltr' },
-  { code: 'he', label: 'HE', name: 'עברית', dir: 'rtl' }
-] as const
-
+const serviceSlugs = ['web-development', 'crm-development', 'ai-automation'] as const
 const serviceKeys = ['first', 'second', 'third'] as const
-const services = computed(() => serviceKeys.map(key => ({
+const services = computed(() => serviceKeys.map((key, index) => ({
+  slug: serviceSlugs[index],
   name: t(`services.items.${key}.name`),
   description: t(`services.items.${key}.description`)
 })))
@@ -27,6 +23,19 @@ const processItems = computed(() => processKeys.map(key => ({
   title: t(`process.items.${key}.title`),
   description: t(`process.items.${key}.description`)
 })))
+
+const localeMessages = computed(() => getLocaleMessage(locale.value) as Record<string, any>)
+const businessProblems = computed(() => localeMessages.value?.businessProblems?.items ?? [])
+const aiWorkflowData = computed(() => localeMessages.value?.aiWorkflow ?? { sectors: [], examples: {}, steps: [] })
+const aiSectors = computed(() => aiWorkflowData.value?.sectors ?? [])
+const aiExamples = computed(() => aiWorkflowData.value?.examples ?? {})
+const aiSteps = computed(() => aiWorkflowData.value?.steps ?? [])
+const advantages = computed(() => localeMessages.value?.advantages?.items ?? [])
+const timeline = computed(() => localeMessages.value?.timeline?.items ?? [])
+const technologies = computed(() => localeMessages.value?.technologies?.items ?? [])
+const faqItems = computed(() => localeMessages.value?.faq?.items ?? [])
+const projectTypes = computed(() => localeMessages.value?.contact?.form?.projectTypes ?? [])
+const workflowExamples = computed(() => Object.values(aiExamples.value) as string[])
 
 const ticker = computed(() => {
   if (locale.value === 'uk') return ['UX/UI ДИЗАЙН', 'NUXT РОЗРОБКА', 'CRM', 'AI-АГЕНТИ', 'АВТОМАТИЗАЦІЯ', 'БРЕНД-СИСТЕМИ']
@@ -39,10 +48,50 @@ function projectSummary(item: PortfolioItem) {
   return te(key) ? t(key) : item.summary
 }
 
+function itemNumber(index: string | number) {
+  return String(Number(index) + 1).padStart(2, '0')
+}
+
 const videoRef = ref<HTMLVideoElement | null>(null)
 let animationFrame = 0
 let targetTime = 5
-let revealObserver: IntersectionObserver | null = null
+
+const contactForm = reactive({
+  name: '',
+  phone: '',
+  email: '',
+  messenger: '',
+  type: '',
+  message: ''
+})
+const formStatus = ref<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+async function submitContact() {
+  formStatus.value = 'loading'
+
+  try {
+    const utm = Object.fromEntries(
+      Object.entries(route.query)
+        .filter(([key]) => key.startsWith('utm_'))
+        .map(([key, value]) => [key, Array.isArray(value) ? String(value[0] ?? '') : String(value ?? '')])
+    )
+
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: {
+        ...contactForm,
+        language: locale.value,
+        page: route.fullPath,
+        utm
+      }
+    })
+
+    Object.assign(contactForm, { name: '', phone: '', email: '', messenger: '', type: '', message: '' })
+    formStatus.value = 'success'
+  } catch {
+    formStatus.value = 'error'
+  }
+}
 
 function scrubVideo(clientX: number, clientY: number) {
   const video = videoRef.value
@@ -76,15 +125,10 @@ onMounted(() => {
     }
   }
 
-  revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => entry.target.classList.toggle('is-visible', entry.isIntersecting))
-  }, { threshold: .12 })
-  document.querySelectorAll('.reveal').forEach(element => revealObserver?.observe(element))
   window.addEventListener('pointermove', handlePointerMove, { passive: true })
 })
 
 onBeforeUnmount(() => {
-  revealObserver?.disconnect()
   window.removeEventListener('pointermove', handlePointerMove)
   if (animationFrame) cancelAnimationFrame(animationFrame)
 })
@@ -112,33 +156,6 @@ useSeoMeta({
 
 <template>
   <div>
-    <header class="site-header">
-      <nav class="container nav-shell" aria-label="SEOKONT">
-        <NuxtLink :to="localePath('/')" class="brand" :aria-label="t('nav.home')">
-          <img class="brand-logo" src="/brand/logo.png" alt="">
-        </NuxtLink>
-        <div class="nav-links">
-          <a href="#services">{{ t('nav.services') }}</a>
-          <a href="#work">{{ t('nav.projects') }}</a>
-          <a href="#process">{{ t('nav.approach') }}</a>
-        </div>
-        <div class="nav-actions">
-          <div class="locale-switcher" aria-label="Language">
-            <NuxtLink
-              v-for="language in languages"
-              :key="language.code"
-              :to="switchLocalePath(language.code)"
-              :class="{ active: locale === language.code }"
-              :lang="language.code"
-              :dir="language.dir"
-              :title="language.name"
-            >{{ language.label }}</NuxtLink>
-          </div>
-          <a href="#contact" class="nav-cta">{{ t('nav.discuss') }} <ArrowUpRight :size="16" /></a>
-        </div>
-      </nav>
-    </header>
-
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-video-layer">
@@ -179,12 +196,17 @@ useSeoMeta({
             <p class="section-note">{{ t('services.note') }}</p>
           </div>
           <div class="services">
-            <article v-for="(service, index) in services" :key="service.name" class="service-row reveal">
-              <span class="service-number">0{{ index + 1 }}</span>
-              <div class="service-name">{{ service.name }}</div>
-              <p class="service-desc">{{ service.description }}</p>
-              <span class="service-icon"><ArrowUpRight :size="22" /></span>
-            </article>
+            <NuxtLink
+            v-for="(service, index) in services"
+            :key="service.slug"
+            :to="localePath(`/services/${service.slug}`)"
+            class="service-row reveal"
+          >
+            <span class="service-number">0{{ index + 1 }}</span>
+            <div class="service-name">{{ service.name }}</div>
+            <p class="service-desc">{{ service.description }}</p>
+            <span class="service-icon"><ArrowUpRight :size="22" /></span>
+          </NuxtLink>
           </div>
         </div>
       </section>
@@ -199,7 +221,13 @@ useSeoMeta({
             <p class="section-note">{{ t('portfolio.note') }}</p>
           </div>
           <div class="portfolio-grid">
-            <article v-for="item in portfolio" :key="item.id" class="project-card reveal" :style="{ '--project-accent': item.accent }">
+            <NuxtLink
+              v-for="item in portfolio"
+              :key="item.id"
+              :to="localePath(`/cases/${item.id}`)"
+              class="project-card reveal"
+              :style="{ '--project-accent': item.accent }"
+            >
               <div class="project-visual">
                 <img v-if="item.imageUrl" :src="item.imageUrl" :alt="item.title" class="project-image">
                 <div v-else class="project-art" :data-monogram="item.title.slice(0, 1)" />
@@ -209,7 +237,7 @@ useSeoMeta({
                 <div><h3>{{ item.title }}</h3><p>{{ projectSummary(item) }}</p></div>
                 <span class="project-year">{{ item.year }}</span>
               </div>
-            </article>
+            </NuxtLink>
           </div>
         </div>
       </section>
@@ -228,27 +256,194 @@ useSeoMeta({
         </div>
       </section>
 
+      <section id="problems" class="section problems-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">04 / SYSTEM AUDIT</p>
+              <h2 class="section-title">{{ t('businessProblems.title') }}</h2>
+            </div>
+          </div>
+          <div class="info-grid">
+            <article v-for="(item, index) in businessProblems" :key="index" class="info-card reveal">
+              <div class="info-card-top">
+                <span>{{ itemNumber(index) }}</span>
+                <Check :size="18" />
+              </div>
+              <h3>{{ item.problem }}</h3>
+              <p>{{ item.solution }}</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="section workflow-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">05 / AI WORKFLOW</p>
+              <h2 class="section-title">{{ t('aiWorkflow.title') }}</h2>
+            </div>
+            <p class="section-note">{{ t('aiWorkflow.intro') }}</p>
+          </div>
+          <div class="workflow-grid reveal" aria-label="Business sectors">
+            <span v-for="(sector, index) in aiSectors" :key="index" class="workflow-tag">
+              <b>{{ itemNumber(index) }}</b>{{ sector }}
+            </span>
+          </div>
+          <div class="workflow-showcase">
+            <div class="workflow-examples">
+              <article v-for="(text, index) in workflowExamples" :key="index" class="workflow-example reveal">
+                <div class="workflow-example-marker"><span>{{ itemNumber(index) }}</span></div>
+                <div>
+                  <h3>{{ aiSectors[index] }}</h3>
+                  <p>{{ text }}</p>
+                </div>
+              </article>
+            </div>
+            <aside class="workflow-steps reveal">
+              <p class="workflow-steps-label">CRM + AI / LIVE FLOW</p>
+              <h3>{{ t('aiWorkflow.intro') }}</h3>
+              <ol>
+                <li v-for="(step, index) in aiSteps" :key="index">
+                  <span>{{ itemNumber(index) }}</span>{{ step }}
+                </li>
+              </ol>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="advantages" class="section advantages-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">06 / CUSTOM BUILD</p>
+              <h2 class="section-title">{{ t('advantages.title') }}</h2>
+            </div>
+          </div>
+          <div class="advantages-grid">
+            <article v-for="(item, index) in advantages" :key="index" class="feature-card reveal">
+              <span class="feature-number">{{ itemNumber(index) }}</span>
+              <p>{{ item }}</p>
+              <span class="feature-check"><Check :size="17" /></span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline" class="section timeline-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">07 / ROADMAP</p>
+              <h2 class="section-title">{{ t('timeline.title') }}</h2>
+            </div>
+          </div>
+          <div class="timeline-grid timeline-track">
+            <article v-for="(item, index) in timeline" :key="index" class="timeline-card reveal">
+              <div class="timeline-node"><span>{{ itemNumber(index) }}</span></div>
+              <div>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="technologies" class="section technologies-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">08 / TECHNOLOGY</p>
+              <h2 class="section-title">{{ t('technologies.title') }}</h2>
+            </div>
+          </div>
+          <div class="tech-list reveal" aria-label="Technology stack">
+            <span v-for="(tech, index) in technologies" :key="index" class="tech-item">
+              <i />{{ tech }}<small>{{ itemNumber(index) }}</small>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section faq-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">09 / FAQ</p>
+              <h2 class="section-title">{{ t('faq.title') }}</h2>
+            </div>
+          </div>
+          <div class="faq-list">
+            <details v-for="(item, index) in faqItems" :key="index" class="faq-item reveal" :open="index === 0">
+              <summary>
+                <span class="faq-number">{{ itemNumber(index) }}</span>
+                <h3>{{ item.question }}</h3>
+                <span class="faq-toggle"><ChevronDown :size="20" /></span>
+              </summary>
+              <p>{{ item.answer }}</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" class="cta-section">
         <div class="container">
           <div class="cta-card reveal">
             <img class="cta-watermark" src="/brand/logo.png" alt="" aria-hidden="true">
             <div class="cta-top"><span>{{ t('contact.question') }}</span><span>{{ t('contact.availability') }}</span></div>
-            <h2 class="cta-title">{{ t('contact.title') }}</h2>
-            <div class="cta-bottom">
-              <p>{{ t('contact.description') }}</p>
-              <a class="cta-link" href="mailto:hello@seokont.com">hello@seokont.com <ArrowUpRight :size="24" /></a>
+            <div class="cta-layout">
+              <div class="cta-copy">
+                <h2 class="cta-title">{{ t('contact.title') }}</h2>
+                <p>{{ t('contact.description') }}</p>
+                <a class="cta-link" href="mailto:hello@seokont.com">hello@seokont.com <ArrowUpRight :size="24" /></a>
+              </div>
+              <form class="contact-form" @submit.prevent="submitContact">
+                <div class="contact-fields contact-fields-two">
+                  <label>
+                    <span>{{ t('contact.form.name') }} *</span>
+                    <input v-model.trim="contactForm.name" name="name" autocomplete="name" required>
+                  </label>
+                  <label>
+                    <span>{{ t('contact.form.phone') }} *</span>
+                    <input v-model.trim="contactForm.phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+                  </label>
+                </div>
+                <div class="contact-fields contact-fields-two">
+                  <label>
+                    <span>{{ t('contact.form.email') }}</span>
+                    <input v-model.trim="contactForm.email" name="email" type="email" autocomplete="email">
+                  </label>
+                  <label>
+                    <span>{{ t('contact.form.messenger') }}</span>
+                    <input v-model.trim="contactForm.messenger" name="messenger" autocomplete="off">
+                  </label>
+                </div>
+                <label>
+                  <span>{{ t('contact.form.type') }} *</span>
+                  <select v-model="contactForm.type" name="type" required>
+                    <option disabled value="">{{ t('contact.form.type') }}</option>
+                    <option v-for="projectType in projectTypes" :key="projectType" :value="projectType">{{ projectType }}</option>
+                  </select>
+                </label>
+                <label>
+                  <span>{{ t('contact.form.description') }} *</span>
+                  <textarea v-model.trim="contactForm.message" name="message" rows="4" required></textarea>
+                </label>
+                <button class="contact-submit" type="submit" :disabled="formStatus === 'loading'">
+                  <span>{{ formStatus === 'loading' ? t('contact.form.sending') : t('contact.form.submit') }}</span>
+                  <Send :size="19" />
+                </button>
+                <p v-if="formStatus === 'success'" class="form-message success" role="status">{{ t('contact.form.success') }}</p>
+                <p v-else-if="formStatus === 'error'" class="form-message error" role="alert">{{ t('contact.form.error') }}</p>
+              </form>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container footer-row">
-        <div class="footer-brand"><span>© {{ new Date().getFullYear() }}</span><img src="/brand/logo.png" alt="SEOKONT"></div>
-        <span>{{ t('footer.services') }}</span>
-        <NuxtLink to="/admin">ADMIN ↗</NuxtLink>
-      </div>
-    </footer>
   </div>
 </template>

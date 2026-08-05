@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     defaultLocale: 'uk',
-    strategy: 'prefix_except_default',
+    strategy: 'prefix',
     locales: [
       { code: 'uk', language: 'uk-UA', name: 'UA', dir: 'ltr' },
       { code: 'en', language: 'en-US', name: 'EN', dir: 'ltr' },
@@ -30,8 +30,8 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      htmlAttrs: { lang: 'uk', dir: 'ltr' },
       title: 'SEOKONT — сайти, CRM та AI-автоматизація',
+      htmlAttrs: { lang: 'uk', dir: 'ltr' },
       meta: [
         { name: 'description', content: 'SEOKONT створює сайти, CRM-системи та AI-автоматизації, що перетворюють рутину на зростання.' },
         { name: 'theme-color', content: '#0b0d0c' },
@@ -39,6 +39,10 @@ export default defineNuxtConfig({
         { property: 'og:description', content: 'Сайти, CRM та AI-автоматизація під ключ.' },
         { property: 'og:type', content: 'website' },
         { name: 'twitter:card', content: 'summary_large_image' }
+      ],
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }
       ]
     }
   },
