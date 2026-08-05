@@ -140,6 +140,8 @@
           submit: 'Отримати попередню консультацію',
           sending: 'Надсилаємо…',
           success: 'Дякуємо! Заявку отримано — скоро зв’яжемося з вами.',
+          modalTitle: 'Заявку успішно надіслано',
+          modalClose: 'Закрити',
           error: 'Не вдалося надіслати заявку. Спробуйте ще раз або напишіть нам на email.',
           projectTypes: ['сайт', 'CRM', 'AI-автоматизація', 'AI-агент', 'інтеграція', 'інше']
         }
@@ -380,6 +382,8 @@
           submit: 'Get a preliminary consultation',
           sending: 'Sending…',
           success: 'Thank you! We received your request and will get back to you shortly.',
+          modalTitle: 'Your request has been sent',
+          modalClose: 'Close',
           error: 'We could not send the request. Please try again or email us directly.',
           projectTypes: ['website', 'CRM', 'AI automation', 'AI agent', 'integration', 'other']
         }
@@ -620,6 +624,8 @@
           submit: 'לקבלת ייעוץ ראשוני',
           sending: 'שולחים…',
           success: 'תודה! קיבלנו את הפנייה ונחזור אליכם בהקדם.',
+          modalTitle: 'הפנייה נשלחה בהצלחה',
+          modalClose: 'סגירה',
           error: 'לא הצלחנו לשלוח את הפנייה. נסו שוב או כתבו לנו באימייל.',
           projectTypes: ['אתר', 'CRM', 'אוטומציה ב-AI', 'סוכן AI', 'אינטגרציה', 'אחר']
         }

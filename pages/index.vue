@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowDownRight, ArrowUpRight, Check, ChevronDown, Send } from '@lucide/vue'
+import { ArrowDownRight, ArrowUpRight, Check, ChevronDown, Send, X } from '@lucide/vue'
 import type { PortfolioItem } from '~/types/portfolio'
 
 const { t, te, locale, getLocaleMessage } = useI18n()
@@ -62,11 +62,61 @@ const contactForm = reactive({
   email: '',
   messenger: '',
   type: '',
-  message: ''
+  message: '',
+  company: ''
 })
 const formStatus = ref<'idle' | 'loading' | 'success' | 'error'>('idle')
+const successModalOpen = ref(false)
+const successModalRef = ref<HTMLElement | null>(null)
+const modalCloseRef = ref<HTMLButtonElement | null>(null)
+let previousFocus: HTMLElement | null = null
+let previousBodyOverflow = ''
+
+function closeSuccessModal() {
+  successModalOpen.value = false
+}
+
+function handleWindowKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape' && successModalOpen.value) closeSuccessModal()
+}
+
+function trapModalFocus(event: KeyboardEvent) {
+  if (event.key !== 'Tab' || !successModalRef.value) return
+
+  const focusable = Array.from(
+    successModalRef.value.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+  )
+  if (!focusable.length) return
+
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault()
+    last?.focus()
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first?.focus()
+  }
+}
+
+watch(successModalOpen, async (isOpen) => {
+  if (import.meta.server) return
+
+  if (isOpen) {
+    previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    previousBodyOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    await nextTick()
+    modalCloseRef.value?.focus()
+  } else {
+    document.body.style.overflow = previousBodyOverflow
+    previousFocus?.focus()
+    previousFocus = null
+  }
+})
 
 async function submitContact() {
+  if (formStatus.value === 'loading') return
   formStatus.value = 'loading'
 
   try {
@@ -86,8 +136,9 @@ async function submitContact() {
       }
     })
 
-    Object.assign(contactForm, { name: '', phone: '', email: '', messenger: '', type: '', message: '' })
+    Object.assign(contactForm, { name: '', phone: '', email: '', messenger: '', type: '', message: '', company: '' })
     formStatus.value = 'success'
+    successModalOpen.value = true
   } catch {
     formStatus.value = 'error'
   }
@@ -126,10 +177,13 @@ onMounted(() => {
   }
 
   window.addEventListener('pointermove', handlePointerMove, { passive: true })
+  window.addEventListener('keydown', handleWindowKeydown)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('pointermove', handlePointerMove)
+  window.removeEventListener('keydown', handleWindowKeydown)
+  document.body.style.overflow = previousBodyOverflow
   if (animationFrame) cancelAnimationFrame(animationFrame)
 })
 
@@ -398,9 +452,13 @@ useSeoMeta({
               <div class="cta-copy">
                 <h2 class="cta-title">{{ t('contact.title') }}</h2>
                 <p>{{ t('contact.description') }}</p>
-                <a class="cta-link" href="mailto:hello@seokont.com">hello@seokont.com <ArrowUpRight :size="24" /></a>
+                <a class="cta-link" href="mailto:seokont@gmail.com">seokont@gmail.com <ArrowUpRight :size="24" /></a>
               </div>
               <form class="contact-form" @submit.prevent="submitContact">
+                <label class="contact-honeypot" aria-hidden="true">
+                  <span>Company</span>
+                  <input v-model="contactForm.company" name="company" tabindex="-1" autocomplete="off">
+                </label>
                 <div class="contact-fields contact-fields-two">
                   <label>
                     <span>{{ t('contact.form.name') }} *</span>
@@ -436,14 +494,49 @@ useSeoMeta({
                   <span>{{ formStatus === 'loading' ? t('contact.form.sending') : t('contact.form.submit') }}</span>
                   <Send :size="19" />
                 </button>
-                <p v-if="formStatus === 'success'" class="form-message success" role="status">{{ t('contact.form.success') }}</p>
-                <p v-else-if="formStatus === 'error'" class="form-message error" role="alert">{{ t('contact.form.error') }}</p>
+                <p v-if="formStatus === 'error'" class="form-message error" role="alert">{{ t('contact.form.error') }}</p>
               </form>
             </div>
           </div>
         </div>
       </section>
     </main>
+
+    <Teleport to="body">
+      <Transition name="contact-modal">
+        <div v-if="successModalOpen" class="contact-modal-backdrop" @click.self="closeSuccessModal">
+          <section
+            ref="successModalRef"
+            class="contact-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-success-title"
+            aria-describedby="contact-success-description"
+            @keydown="trapModalFocus"
+          >
+            <button
+              ref="modalCloseRef"
+              class="contact-modal-close"
+              type="button"
+              :aria-label="t('contact.form.modalClose')"
+              @click="closeSuccessModal"
+            >
+              <X :size="20" />
+            </button>
+            <span class="contact-modal-icon" aria-hidden="true"><Check :size="30" /></span>
+            <p class="contact-modal-kicker">SEOKONT / MESSAGE SENT</p>
+            <h2 id="contact-success-title">{{ t('contact.form.modalTitle') }}</h2>
+            <p id="contact-success-description">{{ t('contact.form.success') }}</p>
+            <a class="contact-modal-email" href="mailto:seokont@gmail.com">
+              seokont@gmail.com <ArrowUpRight :size="18" />
+            </a>
+            <button class="contact-modal-button" type="button" @click="closeSuccessModal">
+              {{ t('contact.form.modalClose') }}
+            </button>
+          </section>
+        </div>
+      </Transition>
+    </Teleport>
 
   </div>
 </template>

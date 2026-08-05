@@ -26,7 +26,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     adminUsername: process.env.NUXT_ADMIN_USERNAME || 'admin',
     adminPassword: process.env.NUXT_ADMIN_PASSWORD || 'seokont-demo-2026',
-    adminSessionSecret: process.env.NUXT_ADMIN_SESSION_SECRET || 'seokont-local-session-secret-change-in-production'
+    adminSessionSecret: process.env.NUXT_ADMIN_SESSION_SECRET || 'seokont-local-session-secret-change-in-production',
+    mailUser: process.env.NUXT_MAIL_USER || '',
+    mailAppPassword: process.env.NUXT_MAIL_APP_PASSWORD || '',
+    contactRecipient: process.env.NUXT_CONTACT_RECIPIENT || 'seokont@gmail.com'
   },
   app: {
     head: {

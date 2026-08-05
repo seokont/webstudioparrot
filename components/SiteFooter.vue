@@ -17,8 +17,8 @@ const localePath = useLocalePath()
         <NuxtLink :to="{ path: localePath('/'), hash: '#process' }">{{ t('nav.approach') }}</NuxtLink>
         <NuxtLink :to="{ path: localePath('/'), hash: '#faq' }">{{ t('nav.faq') }}</NuxtLink>
       </nav>
-      <a class="footer-email" href="mailto:hello@seokont.com">
-        hello@seokont.com <ArrowUpRight :size="18" />
+      <a class="footer-email" href="mailto:seokont@gmail.com">
+        seokont@gmail.com <ArrowUpRight :size="18" />
       </a>
     </div>
     <div class="container footer-row">

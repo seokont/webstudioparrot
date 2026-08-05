@@ -13,11 +13,13 @@
     "@lucide/vue": "^1.28.0",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/i18n": "^10.6.0",
+    "nodemailer": "^9.0.4",
     "nuxt": "4.5.1",
     "vue": "^3.5.40"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "@types/nodemailer": "^8.0.1",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.1.5"
   }
