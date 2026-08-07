@@ -26,8 +26,10 @@ onBeforeUnmount(() => revealObserver?.disconnect())
 </script>
 
 <template>
-  <NuxtRouteAnnouncer />
-  <SiteHeader v-if="!isAdminRoute" />
-  <NuxtPage />
-  <SiteFooter v-if="!isAdminRoute" />
+  <div :class="{ 'public-site': !isAdminRoute }">
+    <NuxtRouteAnnouncer />
+    <SiteHeader v-if="!isAdminRoute" />
+    <NuxtPage />
+    <SiteFooter v-if="!isAdminRoute" />
+  </div>
 </template>
