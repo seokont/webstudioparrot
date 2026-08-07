@@ -35,6 +35,18 @@ export default defineNuxtConfig({
     head: {
       title: 'SEOKONT — сайти, CRM та AI-автоматизація',
       htmlAttrs: { lang: 'uk', dir: 'ltr' },
+      script: [
+        {
+          src: 'https://www.googletagmanager.com/gtag/js?id=AW-18217009551',
+          async: true
+        },
+        {
+          innerHTML: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18217009551');`
+        }
+      ],
       meta: [
         { name: 'description', content: 'SEOKONT створює сайти, CRM-системи та AI-автоматизації, що перетворюють рутину на зростання.' },
         { name: 'theme-color', content: '#0b0d0c' },
