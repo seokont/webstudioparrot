@@ -54,7 +54,11 @@ function itemNumber(index: string | number) {
 
 const videoRef = ref<HTMLVideoElement | null>(null)
 let animationFrame = 0
-let targetTime = 5
+let targetProgress = .5
+let currentProgress = .5
+let canScrubVideo = false
+const scrubStart = .04
+const scrubEnd = .96
 
 const contactForm = reactive({
   name: '',
@@ -145,44 +149,105 @@ async function submitContact() {
 }
 
 function scrubVideo(clientX: number, clientY: number) {
-  const video = videoRef.value
-  if (!video || !video.duration || window.matchMedia('(pointer: coarse)').matches) return
+  if (!canScrubVideo) return
 
-  const ratio = Math.max(0, Math.min(1, clientX / window.innerWidth))
-  targetTime = Math.max(.05, Math.min(video.duration - .05, ratio * video.duration))
+  const cursorProgress = Math.max(0, Math.min(1, clientX / window.innerWidth))
+  targetProgress = 1 - cursorProgress
   document.documentElement.style.setProperty('--pointer-x', `${clientX}px`)
   document.documentElement.style.setProperty('--pointer-y', `${clientY}px`)
+}
 
-  if (!animationFrame) {
-    animationFrame = requestAnimationFrame(() => {
-      if (video.readyState >= 2) video.currentTime += (targetTime - video.currentTime) * .7
-      animationFrame = 0
-    })
+function animateVideoToPointer() {
+  const video = videoRef.value
+  if (!canScrubVideo || !video) {
+    animationFrame = 0
+    return
   }
+
+  const delta = targetProgress - currentProgress
+  const smoothing = .22 + Math.min(.28, Math.abs(delta) * .55)
+  currentProgress += delta * smoothing
+
+  if (
+    !document.hidden &&
+    !video.seeking &&
+    video.readyState >= HTMLMediaElement.HAVE_METADATA &&
+    Number.isFinite(video.duration) &&
+    video.duration > 0
+  ) {
+    const progress = scrubStart + currentProgress * (scrubEnd - scrubStart)
+    const nextTime = progress * video.duration
+    if (Math.abs(video.currentTime - nextTime) > .012) video.currentTime = nextTime
+  }
+
+  animationFrame = requestAnimationFrame(animateVideoToPointer)
 }
 
 function handlePointerMove(event: PointerEvent) {
+  if (event.pointerType === 'touch') return
+
+  const video = videoRef.value
+  if (!canScrubVideo && video) {
+    canScrubVideo = true
+    video.loop = false
+    video.pause()
+  }
+
+  if (canScrubVideo && !animationFrame) {
+    animationFrame = requestAnimationFrame(animateVideoToPointer)
+  }
+
   scrubVideo(event.clientX, event.clientY)
+}
+
+function resetPointerTarget() {
+  targetProgress = .5
+}
+
+function handlePointerExit(event: MouseEvent) {
+  if (!event.relatedTarget) resetPointerTarget()
 }
 
 onMounted(() => {
   const video = videoRef.value
   const coarse = window.matchMedia('(pointer: coarse)').matches
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  canScrubVideo = !coarse && !reducedMotion
+
   if (video) {
-    if (coarse) video.play().catch(() => {})
-    else {
+    const showMiddleFrame = () => {
+      targetProgress = .5
+      currentProgress = .5
+      if (Number.isFinite(video.duration) && video.duration > 0) {
+        video.currentTime = video.duration * .5
+      }
+    }
+
+    if (video.readyState >= HTMLMediaElement.HAVE_METADATA) showMiddleFrame()
+    else video.addEventListener('loadedmetadata', showMiddleFrame, { once: true })
+
+    if (coarse && !reducedMotion) {
+      video.loop = true
+      video.play().catch(() => {})
+    } else {
+      video.loop = false
       video.pause()
-      video.addEventListener('loadedmetadata', () => { video.currentTime = video.duration / 2 }, { once: true })
+      if (canScrubVideo) animationFrame = requestAnimationFrame(animateVideoToPointer)
     }
   }
 
   window.addEventListener('pointermove', handlePointerMove, { passive: true })
+  window.addEventListener('blur', resetPointerTarget)
   window.addEventListener('keydown', handleWindowKeydown)
+  document.addEventListener('mouseout', handlePointerExit)
 })
 
 onBeforeUnmount(() => {
+  canScrubVideo = false
   window.removeEventListener('pointermove', handlePointerMove)
+  window.removeEventListener('blur', resetPointerTarget)
   window.removeEventListener('keydown', handleWindowKeydown)
+  document.removeEventListener('mouseout', handlePointerExit)
   document.body.style.overflow = previousBodyOverflow
   if (animationFrame) cancelAnimationFrame(animationFrame)
 })
