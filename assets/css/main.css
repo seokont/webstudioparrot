@@ -314,8 +314,93 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .footer-email { justify-self: end; display: inline-flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid #6e736b; color: var(--ink); font-weight: 600; }
 .footer-row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--line); font: 10px 'DM Mono', monospace; }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
-.reveal.is-visible { opacity: 1; transform: none; }
+.reveal {
+  --reveal-x: 0px;
+  --reveal-y: 38px;
+  --reveal-scale: .985;
+  --reveal-blur: 9px;
+  --reveal-delay: 0ms;
+  opacity: 0;
+  filter: blur(var(--reveal-blur));
+  transform: translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-scale));
+  transition:
+    opacity .72s ease var(--reveal-delay),
+    filter .72s ease var(--reveal-delay),
+    transform .92s cubic-bezier(.16, 1, .3, 1) var(--reveal-delay);
+  will-change: opacity, filter, transform;
+}
+.reveal[data-reveal='heading'] { --reveal-y: 62px; --reveal-scale: .97; --reveal-blur: 13px; transform-origin: 0 100%; }
+.reveal[data-reveal='line'] { --reveal-x: 38px; --reveal-y: 0px; --reveal-scale: 1; --reveal-blur: 5px; }
+.reveal[data-reveal='card'] { --reveal-y: 58px; --reveal-scale: .94; --reveal-blur: 11px; transform-origin: 50% 100%; }
+.reveal[data-reveal='panel'] { --reveal-y: 24px; --reveal-scale: .965; --reveal-blur: 8px; transform-origin: 50% 50%; }
+[dir='rtl'] .reveal[data-reveal='line'] { --reveal-x: -38px; }
+.reveal.is-visible { opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0) scale(1); will-change: auto; }
+
+.section-kicker { display: inline-flex; align-items: center; gap: 12px; }
+.section-kicker::after { content: ''; width: 42px; height: 1px; flex: 0 0 auto; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.16, 1, .3, 1) .28s; }
+[dir='rtl'] .section-kicker::after { transform-origin: right; }
+.section-head.is-visible .section-kicker::after,
+.process-sticky.is-visible .section-kicker::after,
+.internal-hero.is-visible .section-kicker::after { transform: scaleX(1); }
+
+:is(.info-card, .feature-card, .timeline-card, .service-card, .case-card) { position: relative; isolation: isolate; overflow: hidden; }
+:is(.info-card, .feature-card, .timeline-card, .service-card, .case-card)::after {
+  content: '';
+  position: absolute;
+  inset: -45%;
+  z-index: 3;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.09) 49%, transparent 61%);
+  pointer-events: none;
+  transform: translateX(-72%) rotate(8deg);
+  transition: transform .9s cubic-bezier(.16, 1, .3, 1);
+}
+:is(.info-card, .feature-card, .timeline-card, .service-card, .case-card):hover::after { transform: translateX(72%) rotate(8deg); }
+
+.project-card.reveal.is-visible:hover { transform: translateY(-9px) scale(1.008); }
+.info-card.reveal.is-visible:hover { transform: translateY(-5px) scale(1.008); }
+.feature-card.reveal.is-visible:hover,
+.service-card.reveal.is-visible:hover { transform: translateY(-7px) scale(1.012); }
+.timeline-card.reveal.is-visible:hover { transform: translateY(-6px) scale(.99); }
+
+.process-item.is-visible::before { animation: block-number-pop .64s cubic-bezier(.16, 1, .3, 1) calc(var(--reveal-delay) + 180ms) both; }
+.timeline-card.is-visible .timeline-node span { animation: timeline-node-pop .72s cubic-bezier(.16, 1, .3, 1) calc(var(--reveal-delay) + 180ms) both; }
+.workflow-grid.is-visible .workflow-tag,
+.tech-list.is-visible .tech-item { animation: block-cell-rise .62s cubic-bezier(.16, 1, .3, 1) both; }
+.workflow-grid.is-visible .workflow-tag:nth-child(2), .tech-list.is-visible .tech-item:nth-child(2) { animation-delay: 70ms; }
+.workflow-grid.is-visible .workflow-tag:nth-child(3), .tech-list.is-visible .tech-item:nth-child(3) { animation-delay: 140ms; }
+.workflow-grid.is-visible .workflow-tag:nth-child(4), .tech-list.is-visible .tech-item:nth-child(4) { animation-delay: 210ms; }
+.workflow-grid.is-visible .workflow-tag:nth-child(5), .tech-list.is-visible .tech-item:nth-child(5) { animation-delay: 280ms; }
+.tech-list.is-visible .tech-item:nth-child(n+6) { animation-delay: 330ms; }
+.cta-card.is-visible .cta-copy { animation: cta-content-rise .8s cubic-bezier(.16, 1, .3, 1) .18s both; }
+.cta-card.is-visible .contact-form { animation: cta-form-enter .88s cubic-bezier(.16, 1, .3, 1) .28s both; }
+.faq-item[open] > p { animation: faq-answer-enter .34s ease both; }
+
+@keyframes block-number-pop {
+  0% { opacity: 0; transform: translateY(12px) scale(.7); }
+  65% { transform: translateY(-2px) scale(1.12); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes timeline-node-pop {
+  0% { opacity: 0; box-shadow: 0 0 0 0 rgba(215,255,69,0); transform: scale(.45) rotate(-18deg); }
+  62% { box-shadow: 0 0 0 13px rgba(215,255,69,.09); transform: scale(1.1) rotate(3deg); }
+  100% { opacity: 1; box-shadow: 0 0 0 0 rgba(215,255,69,0); transform: none; }
+}
+@keyframes block-cell-rise {
+  from { opacity: 0; transform: translateY(16px) scale(.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes cta-content-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes cta-form-enter {
+  from { opacity: 0; transform: translate3d(42px, 0, 0) rotate(1.5deg); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes faq-answer-enter {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
 
 /* Public inner pages */
 .page-shell { min-height: 100svh; padding-top: 152px; }
@@ -578,5 +663,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; filter: none; transform: none; transition: none; }
+  .section-kicker::after { transform: scaleX(1); }
 }
