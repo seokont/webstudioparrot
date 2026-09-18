@@ -1,0 +1,266 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" width="1200" height="1000" role="img" aria-label="UNIFIED ORDERS / STOCK / ANALYTICS">
+<defs>
+  <linearGradient id="bgGrad" x1="0.1" y1="0" x2="0.7" y2="1">
+    <stop offset="0" stop-color="#12181a"/>
+    <stop offset="0.5" stop-color="#0a0f11"/>
+    <stop offset="1" stop-color="#04070a"/>
+  </linearGradient>
+  <radialGradient id="keyLight" cx="0.14" cy="0.06" r="0.72">
+    <stop offset="0" stop-color="#ff6b4a" stop-opacity="0.36"/>
+    <stop offset="0.42" stop-color="#ff6b4a" stop-opacity="0.09"/>
+    <stop offset="1" stop-color="#ff6b4a" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="fillLight" cx="0.92" cy="0.9" r="0.66">
+    <stop offset="0" stop-color="#ffa46b" stop-opacity="0.2"/>
+    <stop offset="1" stop-color="#ffa46b" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="vignette" cx="0.5" cy="0.44" r="0.8">
+    <stop offset="0.5" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="1" stop-color="#000000" stop-opacity="0.6"/>
+  </radialGradient>
+  <linearGradient id="tableTop" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0d1214" stop-opacity="0"/>
+    <stop offset="0.3" stop-color="#131b1d" stop-opacity="0.9"/>
+    <stop offset="1" stop-color="#05080a"/>
+  </linearGradient>
+  <linearGradient id="captionFade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#04070a" stop-opacity="0"/>
+    <stop offset="0.55" stop-color="#04070a" stop-opacity="0.62"/>
+    <stop offset="1" stop-color="#04070a" stop-opacity="0.86"/>
+  </linearGradient>
+  <linearGradient id="metal" x1="0.05" y1="0" x2="0.35" y2="1">
+    <stop offset="0" stop-color="#454c52"/>
+    <stop offset="0.22" stop-color="#2a3035"/>
+    <stop offset="0.6" stop-color="#1c2226"/>
+    <stop offset="1" stop-color="#10151a"/>
+  </linearGradient>
+  <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#2e353a"/>
+    <stop offset="0.35" stop-color="#20262a"/>
+    <stop offset="1" stop-color="#141a1e"/>
+  </linearGradient>
+  <linearGradient id="glassTop" x1="0.1" y1="0" x2="0.75" y2="1">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.09"/>
+    <stop offset="0.3" stop-color="#ffffff" stop-opacity="0.02"/>
+    <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="glare" x1="0" y1="0" x2="1" y2="0.35">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+    <stop offset="0.35" stop-color="#ffffff" stop-opacity="0.16"/>
+    <stop offset="0.7" stop-color="#ffffff" stop-opacity="0.06"/>
+    <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="screenBloom" cx="0.5" cy="0.08" r="1">
+    <stop offset="0" stop-color="#ff6b4a" stop-opacity="0.16"/>
+    <stop offset="0.6" stop-color="#ff6b4a" stop-opacity="0.04"/>
+    <stop offset="1" stop-color="#ff6b4a" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="phoneBody" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3d444a"/>
+    <stop offset="0.18" stop-color="#20262b"/>
+    <stop offset="0.55" stop-color="#171d21"/>
+    <stop offset="1" stop-color="#2a3136"/>
+  </linearGradient>
+  <linearGradient id="rim" x1="0.05" y1="0" x2="0.9" y2="1">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+    <stop offset="0.35" stop-color="#ffffff" stop-opacity="0.08"/>
+    <stop offset="0.75" stop-color="#ffffff" stop-opacity="0.04"/>
+    <stop offset="1" stop-color="#ffffff" stop-opacity="0.22"/>
+  </linearGradient>
+  <filter id="bokeh" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="54"/></filter>
+  <filter id="haze" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="12"/></filter>
+  <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+  <filter id="dof" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+  <filter id="reflBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"/></filter>
+  <filter id="keyBlur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="0.8"/></filter>
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+</defs>
+<rect x="0" y="0" width="1200" height="1000" rx="0" fill="#06080a"/><rect x="0" y="0" width="1200" height="1000" rx="0" fill="url(#bgGrad)"/><g filter="url(#bokeh)"><circle cx="180" cy="150" r="190" fill="#ff6b4a" fill-opacity="0.5"/><circle cx="1040" cy="240" r="150" fill="#ff6b4a" fill-opacity="0.32"/><circle cx="900" cy="780" r="210" fill="#ffa46b" fill-opacity="0.3"/><circle cx="140" cy="820" r="160" fill="#ffa46b" fill-opacity="0.24"/></g><g filter="url(#haze)"><circle cx="250" cy="300" r="9" fill="#ffffff" fill-opacity="0.5"/><circle cx="330" cy="210" r="6" fill="#ffffff" fill-opacity="0.35"/><circle cx="980" cy="360" r="7" fill="#ffffff" fill-opacity="0.4"/><circle cx="880" cy="640" r="11" fill="#ffffff" fill-opacity="0.3"/><circle cx="1105" cy="620" r="5" fill="#ffffff" fill-opacity="0.35"/><circle cx="90" cy="560" r="8" fill="#ffffff" fill-opacity="0.22"/></g><rect x="0" y="0" width="1200" height="1000" rx="0" fill="url(#keyLight)"/><rect x="0" y="0" width="1200" height="1000" rx="0" fill="url(#fillLight)"/><rect x="0" y="690" width="1200" height="310" rx="0" fill="url(#tableTop)"/><rect x="0" y="688.5" width="1200" height="1.5" rx="0" fill="#ffffff" fill-opacity="0.07"/><rect x="0" y="0" width="1200" height="1000" rx="0" fill="url(#vignette)"/>
+<g transform="translate(600 384)"><defs>
+    <clipPath id="lidClip"><rect x="-440" y="-264" width="880" height="528" rx="22"/></clipPath>
+    <linearGradient id="reflFade" gradientUnits="userSpaceOnUse" x1="0" y1="346" x2="0" y2="502">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="reflMask" maskUnits="userSpaceOnUse" x="-760" y="342" width="1520" height="180">
+      <rect x="-760" y="342" width="1520" height="180" fill="url(#reflFade)"/>
+    </mask>
+  </defs><g mask="url(#reflMask)"><g transform="translate(0 704) scale(1 -1)" opacity="0.22" filter="url(#reflBlur)"><rect x="-440" y="-264" width="880" height="528" rx="22" fill="url(#metal)"/><rect x="-440" y="-264" width="880" height="528" rx="22" fill="none" stroke="#ffffff" stroke-opacity="0.12"/><rect x="-438" y="-262" width="876" height="2.5" rx="1.2" fill="#ffffff" fill-opacity="0.2"/><rect x="-434" y="-252" width="868" height="504" rx="11" fill="#030608" fill-opacity="0.72"/><svg x="-427" y="-245" width="854" height="490" viewBox="0 0 854 490" preserveAspectRatio="none">
+  <rect x="0" y="0" width="854" height="490" rx="0" fill="#0c0a09"/>
+  <rect x="0" y="0" width="172" height="490" rx="0" fill="#070b0e"/><rect x="171" y="0" width="1" height="490" rx="0" fill="#ffffff" fill-opacity="0.07"/><rect x="20" y="26" width="20" height="20" rx="6" fill="#ff6b4a" fill-opacity="0.95"/><text x="48" y="41" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600" letter-spacing="0.4">MONO</text><rect x="24" y="84" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="95" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Огляд</text><rect x="10" y="111" width="152" height="32" rx="9" fill="#ff6b4a" fill-opacity="0.13"/><rect x="10" y="111" width="2.5" height="32" rx="1.2" fill="#ff6b4a"/><rect x="24" y="120" width="11" height="11" rx="3" fill="#ff6b4a" fill-opacity="0.9"/><text x="46" y="131" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.95">Замовлення</text><rect x="24" y="156" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="167" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Товари</text><rect x="24" y="192" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="203" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Склад</text><rect x="24" y="228" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="239" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Клієнти</text><rect x="24" y="264" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="275" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Аналітика</text><rect x="12" y="424" width="148" height="50" rx="12" fill="#ffffff" fill-opacity="0.05"/><circle cx="36" cy="449" r="14" fill="#ff6b4a" fill-opacity="0.85"/><text x="36" y="453.9" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="12.6" fill="#08110f" font-weight="700" text-anchor="middle">АС</text><text x="58" y="446" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.85">Анна С.</text><text x="58" y="460" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#ffffff" fill-opacity="0.4">Оператор</text>
+  <rect x="172" y="0" width="682" height="54" rx="0" fill="#080c10"/><rect x="172" y="53" width="682" height="1" rx="0" fill="#ffffff" fill-opacity="0.07"/><text x="194" y="33" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#ffffff" font-weight="600">Замовлення</text><rect x="534" y="15" width="168" height="24" rx="12" fill="#ffffff" fill-opacity="0.06"/><text x="548" y="31" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#ffffff" fill-opacity="0.35">Пошук…</text><rect x="708" y="14" width="96" height="26" rx="13" fill="#ff6b4a" fill-opacity="0.92"/><text x="756" y="31" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#08110f" font-weight="700" text-anchor="middle" letter-spacing="0.5">ДОДАТИ ТОВАР</text><circle cx="828" cy="27" r="13" fill="#ff6b4a" fill-opacity="0.85"/><text x="828" y="31.55" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11.7" fill="#08110f" font-weight="700" text-anchor="middle">МК</text>
+  <rect x="188" y="70" width="200" height="74" rx="11" fill="#ffffff" fill-opacity="0.045"/>
+  <text x="202" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ВИРУЧКА / ДЕНЬ</text>
+  <text x="202" y="122" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#ffffff" font-weight="600">184 200</text>
+  <rect x="400" y="70" width="172" height="74" rx="11" fill="#ffffff" fill-opacity="0.045"/>
+  <text x="414" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ЗАМОВЛЕННЯ</text>
+  <text x="414" y="122" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#ffffff" font-weight="600">96</text>
+  <rect x="584" y="70" width="254" height="74" rx="11" fill="#ffffff" fill-opacity="0.045"/>
+  <text x="598" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">КОНВЕРСІЯ КОШИКА</text>
+  <text x="598" y="122" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#ffffff" font-weight="600">64%</text>
+  <rect x="682" y="96" width="140" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.08"/>
+  <rect x="682" y="96" width="90" height="9" rx="4.5" fill="#ff6b4a" fill-opacity="0.9"/>
+  <text x="682" y="122" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">АВТОМАТИЗАЦІЯ / ON</text>
+
+  
+    <rect x="188" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="200" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.16"/>
+    <rect x="228" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="200" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Крісло Nord</text>
+    <text x="200" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">4 240 грн</text>
+    <rect x="200" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="200" y="292" width="54" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+    <rect x="350" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="362" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.30000000000000004"/>
+    <rect x="390" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="362" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Лампа Arc</text>
+    <text x="362" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">1 890 грн</text>
+    <rect x="362" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="362" y="292" width="39" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+    <rect x="512" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="524" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.44000000000000006"/>
+    <rect x="552" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="524" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Стіл Oak</text>
+    <text x="524" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">8 500 грн</text>
+    <rect x="524" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="524" y="292" width="24" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+    <rect x="674" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="686" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.5800000000000001"/>
+    <rect x="714" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="686" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Полиця Line</text>
+    <text x="686" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">2 350 грн</text>
+    <rect x="686" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="686" y="292" width="48" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+
+  <rect x="188" y="320" width="650" height="154" rx="12" fill="#ffffff" fill-opacity="0.035"/>
+  <text x="206" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ОСТАННІ ЗАМОВЛЕННЯ</text>
+  <text x="700" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ОНОВЛЕНО 2 ХВ</text>
+  
+    <rect x="200" y="358" width="626" height="24" rx="6" fill="#ffffff" fill-opacity="0.035"/>
+    <text x="212" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10241</text>
+    <text x="280" y="374" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Олена К.</text>
+    <rect x="420" y="367" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="367" width="96" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="361" width="92" height="18" rx="9" fill="#ff6b4a" fill-opacity="0.18" stroke="#ff6b4a" stroke-opacity="0.32"/><text x="606" y="373.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ff6b4a" letter-spacing="0.6" text-anchor="middle">ОПЛАЧЕНО</text>
+    <text x="742" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">4 240</text>
+    <text x="814" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+    
+    <text x="212" y="402" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10240</text>
+    <text x="280" y="402" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Ігор П.</text>
+    <rect x="420" y="395" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="395" width="72" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="389" width="92" height="18" rx="9" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.32"/><text x="606" y="401.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" letter-spacing="0.6" text-anchor="middle">В ДОРОЗІ</text>
+    <text x="742" y="402" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">12 890</text>
+    <text x="814" y="402" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+    <rect x="200" y="414" width="626" height="24" rx="6" fill="#ffffff" fill-opacity="0.035"/>
+    <text x="212" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10239</text>
+    <text x="280" y="430" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Марія Т.</text>
+    <rect x="420" y="423" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="423" width="48" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="417" width="92" height="18" rx="9" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.32"/><text x="606" y="429.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" letter-spacing="0.6" text-anchor="middle">НОВЕ</text>
+    <text x="742" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">2 350</text>
+    <text x="814" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+    
+    <text x="212" y="458" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10238</text>
+    <text x="280" y="458" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Олег В.</text>
+    <rect x="420" y="451" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="451" width="86.4" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="445" width="92" height="18" rx="9" fill="#ff6b4a" fill-opacity="0.18" stroke="#ff6b4a" stroke-opacity="0.32"/><text x="606" y="457.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ff6b4a" letter-spacing="0.6" text-anchor="middle">ОПЛАЧЕНО</text>
+    <text x="742" y="458" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">8 500</text>
+    <text x="814" y="458" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+  </svg><rect x="-427" y="-245" width="854" height="490" rx="3" fill="url(#screenBloom)"/><rect x="-427" y="-245" width="854" height="490" rx="3" fill="url(#glassTop)"/><g clip-path="url(#lidClip)"><path d="M-264 -264 L-106 -264 L-272 264 L-430 264 Z" fill="url(#glare)" opacity="0.55" filter="url(#haze)"/><path d="M-80 -264 L-48 -264 L-214 264 L-246 264 Z" fill="#ffffff" fill-opacity="0.05" filter="url(#haze)"/></g><circle cx="0" cy="-256" r="2.3" fill="#141a1e"/><circle cx="0" cy="-256" r="0.9" fill="#ff6b4a" fill-opacity="0.5"/><rect x="-427" y="-245" width="854" height="490" rx="3" fill="none" stroke="#ffffff" stroke-opacity="0.07"/></g></g><ellipse cx="0" cy="382" rx="440" ry="26" fill="#000000" opacity="0.5" filter="url(#soft)"/><ellipse cx="0" cy="368" rx="387.2" ry="12" fill="#000000" opacity="0.55" filter="url(#haze)"/><path d="M-440 259 L440 259 L488 352 L-488 352 Z" fill="url(#deck)"/><g filter="url(#keyBlur)"><rect x="-336" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-290.87" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-245.73" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-200.6" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-155.47" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-110.33" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-65.2" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-20.07" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="25.07" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="70.2" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="115.33" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="160.47" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="205.6" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="250.73" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="295.87" y="275" width="40.13" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-350.67" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-303.58" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-256.49" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-209.4" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-162.31" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-115.22" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-68.13" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-21.04" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="26.04" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="73.13" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="120.22" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="167.31" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="214.4" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="261.49" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="308.58" y="291" width="42.09" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-365.33" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-316.29" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-267.24" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-218.2" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-169.16" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-120.11" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-71.07" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-22.02" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="27.02" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="76.07" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="125.11" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="174.16" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="223.2" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="272.24" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="321.29" y="307" width="44.04" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-380" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-329" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-278" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-227" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-176" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-125" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-74" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="-23" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="28" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="79" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="130" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="181" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="232" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="283" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/><rect x="334" y="323" width="46" height="12" rx="2.5" fill="#0b0f12" fill-opacity="0.85"/></g><rect x="-98" y="336" width="196" height="13" rx="4" fill="#0d1215" fill-opacity="0.9"/><path d="M-440 259 L440 259 L488 352 L-488 352 Z" fill="none" stroke="#ffffff" stroke-opacity="0.09"/><rect x="-443" y="256" width="886" height="7" rx="3.5" fill="#080c0f"/><path d="M-488 352 L488 352 L470 358 L-470 358 Z" fill="#080c0f"/><rect x="-440" y="-264" width="880" height="528" rx="22" fill="url(#metal)"/><rect x="-440" y="-264" width="880" height="528" rx="22" fill="none" stroke="#ffffff" stroke-opacity="0.12"/><rect x="-438" y="-262" width="876" height="2.5" rx="1.2" fill="#ffffff" fill-opacity="0.2"/><rect x="-434" y="-252" width="868" height="504" rx="11" fill="#030608" fill-opacity="0.72"/><svg x="-427" y="-245" width="854" height="490" viewBox="0 0 854 490" preserveAspectRatio="none">
+  <rect x="0" y="0" width="854" height="490" rx="0" fill="#0c0a09"/>
+  <rect x="0" y="0" width="172" height="490" rx="0" fill="#070b0e"/><rect x="171" y="0" width="1" height="490" rx="0" fill="#ffffff" fill-opacity="0.07"/><rect x="20" y="26" width="20" height="20" rx="6" fill="#ff6b4a" fill-opacity="0.95"/><text x="48" y="41" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600" letter-spacing="0.4">MONO</text><rect x="24" y="84" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="95" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Огляд</text><rect x="10" y="111" width="152" height="32" rx="9" fill="#ff6b4a" fill-opacity="0.13"/><rect x="10" y="111" width="2.5" height="32" rx="1.2" fill="#ff6b4a"/><rect x="24" y="120" width="11" height="11" rx="3" fill="#ff6b4a" fill-opacity="0.9"/><text x="46" y="131" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.95">Замовлення</text><rect x="24" y="156" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="167" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Товари</text><rect x="24" y="192" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="203" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Склад</text><rect x="24" y="228" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="239" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Клієнти</text><rect x="24" y="264" width="11" height="11" rx="3" fill="#ffffff" fill-opacity="0.25"/><text x="46" y="275" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.5">Аналітика</text><rect x="12" y="424" width="148" height="50" rx="12" fill="#ffffff" fill-opacity="0.05"/><circle cx="36" cy="449" r="14" fill="#ff6b4a" fill-opacity="0.85"/><text x="36" y="453.9" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="12.6" fill="#08110f" font-weight="700" text-anchor="middle">АС</text><text x="58" y="446" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.85">Анна С.</text><text x="58" y="460" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="9.5" fill="#ffffff" fill-opacity="0.4">Оператор</text>
+  <rect x="172" y="0" width="682" height="54" rx="0" fill="#080c10"/><rect x="172" y="53" width="682" height="1" rx="0" fill="#ffffff" fill-opacity="0.07"/><text x="194" y="33" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14" fill="#ffffff" font-weight="600">Замовлення</text><rect x="534" y="15" width="168" height="24" rx="12" fill="#ffffff" fill-opacity="0.06"/><text x="548" y="31" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10" fill="#ffffff" fill-opacity="0.35">Пошук…</text><rect x="708" y="14" width="96" height="26" rx="13" fill="#ff6b4a" fill-opacity="0.92"/><text x="756" y="31" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#08110f" font-weight="700" text-anchor="middle" letter-spacing="0.5">ДОДАТИ ТОВАР</text><circle cx="828" cy="27" r="13" fill="#ff6b4a" fill-opacity="0.85"/><text x="828" y="31.55" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11.7" fill="#08110f" font-weight="700" text-anchor="middle">МК</text>
+  <rect x="188" y="70" width="200" height="74" rx="11" fill="#ffffff" fill-opacity="0.045"/>
+  <text x="202" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ВИРУЧКА / ДЕНЬ</text>
+  <text x="202" y="122" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#ffffff" font-weight="600">184 200</text>
+  <rect x="400" y="70" width="172" height="74" rx="11" fill="#ffffff" fill-opacity="0.045"/>
+  <text x="414" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ЗАМОВЛЕННЯ</text>
+  <text x="414" y="122" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#ffffff" font-weight="600">96</text>
+  <rect x="584" y="70" width="254" height="74" rx="11" fill="#ffffff" fill-opacity="0.045"/>
+  <text x="598" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">КОНВЕРСІЯ КОШИКА</text>
+  <text x="598" y="122" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#ffffff" font-weight="600">64%</text>
+  <rect x="682" y="96" width="140" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.08"/>
+  <rect x="682" y="96" width="90" height="9" rx="4.5" fill="#ff6b4a" fill-opacity="0.9"/>
+  <text x="682" y="122" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">АВТОМАТИЗАЦІЯ / ON</text>
+
+  
+    <rect x="188" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="200" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.16"/>
+    <rect x="228" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="200" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Крісло Nord</text>
+    <text x="200" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">4 240 грн</text>
+    <rect x="200" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="200" y="292" width="54" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+    <rect x="350" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="362" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.30000000000000004"/>
+    <rect x="390" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="362" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Лампа Arc</text>
+    <text x="362" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">1 890 грн</text>
+    <rect x="362" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="362" y="292" width="39" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+    <rect x="512" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="524" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.44000000000000006"/>
+    <rect x="552" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="524" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Стіл Oak</text>
+    <text x="524" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">8 500 грн</text>
+    <rect x="524" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="524" y="292" width="24" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+    <rect x="674" y="158" width="148" height="148" rx="12" fill="#ffffff" fill-opacity="0.04"/>
+    <rect x="686" y="170" width="124" height="78" rx="9" fill="#ff6b4a" fill-opacity="0.5800000000000001"/>
+    <rect x="714" y="194" width="68" height="30" rx="6" fill="#0c0a09" fill-opacity="0.25"/>
+    <text x="686" y="268" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#ffffff" fill-opacity="0.88">Полиця Line</text>
+    <text x="686" y="288" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#ffffff" font-weight="600">2 350 грн</text>
+    <rect x="686" y="292" width="60" height="5" rx="2.5" fill="#ffffff" fill-opacity="0.1"/>
+    <rect x="686" y="292" width="48" height="5" rx="2.5" fill="#ff6b4a" fill-opacity="0.75"/>
+
+  <rect x="188" y="320" width="650" height="154" rx="12" fill="#ffffff" fill-opacity="0.035"/>
+  <text x="206" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ОСТАННІ ЗАМОВЛЕННЯ</text>
+  <text x="700" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10" fill="#ffffff" fill-opacity="0.5" letter-spacing="1.1">ОНОВЛЕНО 2 ХВ</text>
+  
+    <rect x="200" y="358" width="626" height="24" rx="6" fill="#ffffff" fill-opacity="0.035"/>
+    <text x="212" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10241</text>
+    <text x="280" y="374" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Олена К.</text>
+    <rect x="420" y="367" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="367" width="96" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="361" width="92" height="18" rx="9" fill="#ff6b4a" fill-opacity="0.18" stroke="#ff6b4a" stroke-opacity="0.32"/><text x="606" y="373.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ff6b4a" letter-spacing="0.6" text-anchor="middle">ОПЛАЧЕНО</text>
+    <text x="742" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">4 240</text>
+    <text x="814" y="374" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+    
+    <text x="212" y="402" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10240</text>
+    <text x="280" y="402" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Ігор П.</text>
+    <rect x="420" y="395" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="395" width="72" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="389" width="92" height="18" rx="9" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.32"/><text x="606" y="401.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" letter-spacing="0.6" text-anchor="middle">В ДОРОЗІ</text>
+    <text x="742" y="402" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">12 890</text>
+    <text x="814" y="402" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+    <rect x="200" y="414" width="626" height="24" rx="6" fill="#ffffff" fill-opacity="0.035"/>
+    <text x="212" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10239</text>
+    <text x="280" y="430" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Марія Т.</text>
+    <rect x="420" y="423" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="423" width="48" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="417" width="92" height="18" rx="9" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.32"/><text x="606" y="429.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" letter-spacing="0.6" text-anchor="middle">НОВЕ</text>
+    <text x="742" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">2 350</text>
+    <text x="814" y="430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+    
+    <text x="212" y="458" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.55">#10238</text>
+    <text x="280" y="458" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" fill="#ffffff" fill-opacity="0.85">Олег В.</text>
+    <rect x="420" y="451" width="96" height="6" rx="3" fill="#ffffff" fill-opacity="0.09"/>
+    <rect x="420" y="451" width="86.4" height="6" rx="3" fill="#ff6b4a" fill-opacity="0.6"/>
+    <rect x="560" y="445" width="92" height="18" rx="9" fill="#ff6b4a" fill-opacity="0.18" stroke="#ff6b4a" stroke-opacity="0.32"/><text x="606" y="457.4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ff6b4a" letter-spacing="0.6" text-anchor="middle">ОПЛАЧЕНО</text>
+    <text x="742" y="458" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9.5" fill="#ffffff" fill-opacity="0.7" text-anchor="end">8 500</text>
+    <text x="814" y="458" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="8.5" fill="#ffffff" fill-opacity="0.32" text-anchor="end">грн</text>
+  </svg><rect x="-427" y="-245" width="854" height="490" rx="3" fill="url(#screenBloom)"/><rect x="-427" y="-245" width="854" height="490" rx="3" fill="url(#glassTop)"/><g clip-path="url(#lidClip)"><path d="M-264 -264 L-106 -264 L-272 264 L-430 264 Z" fill="url(#glare)" opacity="0.55" filter="url(#haze)"/><path d="M-80 -264 L-48 -264 L-214 264 L-246 264 Z" fill="#ffffff" fill-opacity="0.05" filter="url(#haze)"/></g><circle cx="0" cy="-256" r="2.3" fill="#141a1e"/><circle cx="0" cy="-256" r="0.9" fill="#ff6b4a" fill-opacity="0.5"/><rect x="-427" y="-245" width="854" height="490" rx="3" fill="none" stroke="#ffffff" stroke-opacity="0.07"/></g>
+<rect x="0" y="806" width="1200" height="194" rx="0" fill="url(#captionFade)"/>
+<circle cx="84" cy="100" r="5" fill="#ff6b4a"/>
+<text x="100" y="105" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" fill="#ffffff" fill-opacity="0.5" letter-spacing="3.4">SEOKONT / CASE STUDY</text>
+<text x="80" y="906" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="21" fill="#ff6b4a" letter-spacing="4.6">UNIFIED ORDERS / STOCK / ANALYTICS</text>
+<text x="80" y="948" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" fill="#ffffff" fill-opacity="0.42" letter-spacing="3">03 — E-COMMERCE PLATFORM / 2025</text>
+<rect x="940" y="884" width="182" height="46" rx="23" fill="none" stroke="#ff6b4a" stroke-opacity="0.38"/>
+<text x="1031" y="913" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#ff6b4a" letter-spacing="3" text-anchor="middle">SEOKONT</text>
+<rect x="0" y="0" width="1200" height="1000" rx="0" fill="#808080" filter="url(#grain)" opacity="0.075"/>
+</svg>

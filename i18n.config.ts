@@ -1,4 +1,4 @@
-﻿export default defineI18nConfig(() => ({
+export default defineI18nConfig(() => ({
   legacy: false,
   locale: 'uk',
   fallbackLocale: 'uk',
@@ -72,7 +72,10 @@
         items: {
           'orion-estate': 'CRM-система для управління клієнтами, продажами, завданнями та бізнес-аналітикою.',
           'pulse-clinic': 'AI-чат на сайті та кабінет компанії для швидкої обробки звернень пацієнтів.',
-          'mono-market': 'Платформа з особистим кабінетом, адміністративною панеллю та аналітикою для торгівлі.'
+          'mono-market': 'Платформа з особистим кабінетом, адміністративною панеллю та аналітикою для торгівлі.',
+          'axiom-logistics': 'Диспетчерська CRM, де заявки, рейси та водії працюють в одній системі з AI-пріоритезацією.',
+          'nord-build': 'Система для будівництва: об’єкти, кошториси й платежі з AI-прорахунком вартості.',
+          'lumen-edu': 'CRM онлайн-школи з AI-куратором, який утримує студентів до завершення курсу.'
         }
       },
       aiWorkflow: {
@@ -175,6 +178,36 @@
           solution: 'Запровадили адаптивний кабінет, транзакції, ролі і real-time інструменти для управління.',
           functions: ['Особистий кабінет', 'Адмінпанель', 'Ролі користувачів', 'Аналітика', 'Транзакції', 'Real-time'],
           technologies: ['Vue', 'Node.js', 'Prisma', 'Redis'],
+          note: 'Концептуальний проєкт, створений для демонстрації можливостей студії.'
+        },
+        'axiom-logistics': {
+          title: 'AXIOM LOGISTICS',
+          category: 'LOGISTICS / AI',
+          description: 'Диспетчерська CRM для перевізника: заявки, рейси, водії та документи в одній системі.',
+          task: 'Прибрати ручний розподіл рейсів і звести заявки з усіх каналів до однієї диспетчерської.',
+          solution: 'Зібрали заявки, водіїв, маршрути й документи в CRM та підключили AI, який визначає пріоритет і підказує оптимальний маршрут.',
+          functions: ['Заявки з усіх каналів', 'Кабінет водія', 'Планування рейсів', 'AI-пріоритет', 'Документи', 'Трекінг статусів'],
+          technologies: ['Nuxt', 'NestJS', 'PostgreSQL', 'Redis'],
+          note: 'Концептуальний проєкт, створений для демонстрації можливостей студії.'
+        },
+        'nord-build': {
+          title: 'NORD BUILD',
+          category: 'CONSTRUCTION / AI',
+          description: 'Система для будівельної компанії: об’єкти, етапи, підрядники, платежі та AI-прорахунок вартості.',
+          task: 'Скоротити час підготовки кошторису і прибрати розбіжності між об’єктами, підрядниками та фінансами.',
+          solution: 'Звели об’єкти, етапи, підрядників і платежі в CRM, а AI рахує вартість за історією схожих робіт.',
+          functions: ['Об’єкти та етапи', 'AI-кошторис', 'Підрядники', 'Платежі', 'Фотофіксація', 'Звіти для власника'],
+          technologies: ['Vue', 'Node.js', 'PostgreSQL', 'Docker'],
+          note: 'Концептуальний проєкт, створений для демонстрації можливостей студії.'
+        },
+        'lumen-edu': {
+          title: 'LUMEN EDU',
+          category: 'EDTECH / CRM',
+          description: 'CRM онлайн-школи з AI-куратором, який веде студента від заявки до завершення курсу.',
+          task: 'Зупинити відтік студентів і зняти з кураторів ручну роботу з нагадуваннями.',
+          solution: 'Поєднали CRM, навчальний кабінет і AI-куратора, який пише студентові, щойно падає активність.',
+          functions: ['Заявки та групи', 'Кабінет студента', 'AI-куратор', 'Прогрес навчання', 'Оплати', 'Аналітика утримання'],
+          technologies: ['Nuxt', 'NestJS', 'PostgreSQL', 'AI API'],
           note: 'Концептуальний проєкт, створений для демонстрації можливостей студії.'
         }
       },
@@ -314,7 +347,10 @@
         items: {
           'orion-estate': 'A CRM system for managing clients, sales, tasks and business analytics.',
           'pulse-clinic': 'An AI chat widget and company portal for fast patient inquiries.',
-          'mono-market': 'A platform with customer portal, admin panel and commerce analytics.'
+          'mono-market': 'A platform with customer portal, admin panel and commerce analytics.',
+          'axiom-logistics': 'A dispatch CRM where requests, routes and drivers work in one system with AI prioritization.',
+          'nord-build': 'A construction system: sites, estimates and payments with AI cost calculation.',
+          'lumen-edu': 'An online school CRM with an AI curator that keeps students until course completion.'
         }
       },
       aiWorkflow: {
@@ -417,6 +453,36 @@
           solution: 'Implemented responsive portal, transactions, roles and real-time management tools.',
           functions: ['Customer portal', 'Admin panel', 'User roles', 'Analytics', 'Transactions', 'Real-time features'],
           technologies: ['Vue', 'Node.js', 'Prisma', 'Redis'],
+          note: 'Conceptual project created to showcase studio capabilities.'
+        },
+        'axiom-logistics': {
+          title: 'AXIOM LOGISTICS',
+          category: 'LOGISTICS / AI',
+          description: 'A dispatch CRM for a carrier: requests, routes, drivers and documents in one system.',
+          task: 'Remove manual route distribution and merge requests from every channel into one dispatch desk.',
+          solution: 'We collected requests, drivers, routes and documents in CRM and connected AI that scores priority and suggests the best route.',
+          functions: ['Omnichannel requests', 'Driver portal', 'Route planning', 'AI priority', 'Documents', 'Status tracking'],
+          technologies: ['Nuxt', 'NestJS', 'PostgreSQL', 'Redis'],
+          note: 'Conceptual project created to showcase studio capabilities.'
+        },
+        'nord-build': {
+          title: 'NORD BUILD',
+          category: 'CONSTRUCTION / AI',
+          description: 'A construction company system: sites, stages, contractors, payments and AI cost calculation.',
+          task: 'Cut estimate preparation time and remove mismatches between sites, contractors and finances.',
+          solution: 'We brought sites, stages, contractors and payments into CRM, and AI calculates cost from the history of similar work.',
+          functions: ['Sites and stages', 'AI estimate', 'Contractors', 'Payments', 'Photo reports', 'Owner reports'],
+          technologies: ['Vue', 'Node.js', 'PostgreSQL', 'Docker'],
+          note: 'Conceptual project created to showcase studio capabilities.'
+        },
+        'lumen-edu': {
+          title: 'LUMEN EDU',
+          category: 'EDTECH / CRM',
+          description: 'CRM for an online school with an AI curator that guides a student from application to course completion.',
+          task: 'Stop student churn and take manual reminder work away from curators.',
+          solution: 'We combined CRM, the learning portal and an AI curator that messages a student as soon as activity drops.',
+          functions: ['Applications and cohorts', 'Student portal', 'AI curator', 'Learning progress', 'Payments', 'Retention analytics'],
+          technologies: ['Nuxt', 'NestJS', 'PostgreSQL', 'AI API'],
           note: 'Conceptual project created to showcase studio capabilities.'
         }
       },
@@ -556,7 +622,10 @@
         items: {
           'orion-estate': 'מערכת CRM לניהול לקוחות, מכירות, משימות ואנליטיקה עסקית.',
           'pulse-clinic': 'צ׳אט AI באתר ופורטאל חברה לעיבוד מהיר של פניות מטופלים.',
-          'mono-market': 'פלטפורמה עם פורטל משתמש, לוח ניהול ואנליטיקה למסחר.'
+          'mono-market': 'פלטפורמה עם פורטל משתמש, לוח ניהול ואנליטיקה למסחר.',
+          'axiom-logistics': 'CRM דיספאצ׳ שבו פניות, נסיעות ונהגים פועלים במערכת אחת עם תעדוף AI.',
+          'nord-build': 'מערכת לבנייה: אתרים, כתבי כמויות ותשלומים עם חישוב עלות ב-AI.',
+          'lumen-edu': 'CRM לבית ספר אונליין עם אוצר AI שמחזיק תלמידים עד סיום הקורס.'
         }
       },
       aiWorkflow: {
@@ -659,6 +728,36 @@
           solution: 'הטמענו פורטל מותאם, עסקאות, תפקידים וכלים בזמן אמת לניהול.',
           functions: ['פורטאל משתמש', 'לוח ניהול', 'תפקידי משתמשים', 'אנליטיקה', 'עסקאות', 'יכולות בזמן אמת'],
           technologies: ['Vue', 'Node.js', 'Prisma', 'Redis'],
+          note: 'מקרה קונספטואלי שנוצר כדי להציג את יכולות הסטודיו.'
+        },
+        'axiom-logistics': {
+          title: 'AXIOM LOGISTICS',
+          category: 'LOGISTICS / AI',
+          description: 'CRM דיספאצ׳ למוביל: פניות, נסיעות, נהגים ומסמכים במערכת אחת.',
+          task: 'להסיר חלוקה ידנית של נסיעות ולאחד פניות מכל הערוצים לעמדת דיספאצ׳ אחת.',
+          solution: 'ריכזנו פניות, נהגים, מסלולים ומסמכים ב-CRM וחיברנו AI שקובע עדיפות ומציע מסלול מיטבי.',
+          functions: ['פניות מכל הערוצים', 'פורטל נהג', 'תכנון נסיעות', 'עדיפות AI', 'מסמכים', 'מעקב סטטוסים'],
+          technologies: ['Nuxt', 'NestJS', 'PostgreSQL', 'Redis'],
+          note: 'מקרה קונספטואלי שנוצר כדי להציג את יכולות הסטודיו.'
+        },
+        'nord-build': {
+          title: 'NORD BUILD',
+          category: 'CONSTRUCTION / AI',
+          description: 'מערכת לחברת בנייה: אתרים, שלבים, קבלנים, תשלומים וחישוב עלות ב-AI.',
+          task: 'לקצר את זמן הכנת כתב הכמויות ולהסיר אי-התאמות בין אתרים, קבלנים וכספים.',
+          solution: 'איחדנו אתרים, שלבים, קבלנים ותשלומים ב-CRM, ו-AI מחשב עלות לפי היסטוריית עבודות דומות.',
+          functions: ['אתרים ושלבים', 'כתב כמויות AI', 'קבלנים', 'תשלומים', 'דוחות צילום', 'דוחות לבעלים'],
+          technologies: ['Vue', 'Node.js', 'PostgreSQL', 'Docker'],
+          note: 'מקרה קונספטואלי שנוצר כדי להציג את יכולות הסטודיו.'
+        },
+        'lumen-edu': {
+          title: 'LUMEN EDU',
+          category: 'EDTECH / CRM',
+          description: 'CRM לבית ספר אונליין עם אוצר AI שמוביל תלמיד מהפנייה ועד סיום הקורס.',
+          task: 'לעצור נשירה של תלמידים ולהסיר מהאוצרים עבודה ידנית של תזכורות.',
+          solution: 'חיברנו CRM, פורטל לימודים ואוצר AI שכותב לתלמיד ברגע שהפעילות יורדת.',
+          functions: ['פניות וקבוצות', 'פורטל תלמיד', 'אוצר AI', 'התקדמות לימודית', 'תשלומים', 'אנליטיקת שימור'],
+          technologies: ['Nuxt', 'NestJS', 'PostgreSQL', 'AI API'],
           note: 'מקרה קונספטואלי שנוצר כדי להציג את יכולות הסטודיו.'
         }
       },

@@ -1,19 +1,33 @@
 <script setup lang="ts">
 import { ArrowLeft, ArrowUpRight, Check } from '@lucide/vue'
+import type { PortfolioItem } from '~/types/portfolio'
 
 const route = useRoute()
 const { t, te, locale, getLocaleMessage } = useI18n()
 const localePath = useLocalePath()
 const id = route.params.id as string
-const caseSlugs = ['orion-estate', 'pulse-clinic', 'mono-market'] as const
 
-if (!caseSlugs.includes(id as any)) {
+const { data: portfolio } = await useFetch<PortfolioItem[]>('/api/portfolio', {
+  default: () => []
+})
+
+const project = computed(() => portfolio.value.find(item => item.id === id) ?? null)
+const hasCaseContent = te(`portfolioCases.${id}.title`)
+
+if (!project.value && !hasCaseContent) {
   throw createError({ statusCode: 404, statusMessage: 'Case not found' })
 }
 
 const messages = computed(() => getLocaleMessage(locale.value) as Record<string, any>)
 const caseData = computed(() => messages.value.portfolioCases?.[id] ?? {})
-const summary = computed(() => t(`portfolio.items.${id}`))
+
+const caseTitle = computed(() => caseData.value.title || project.value?.title || '')
+const caseCategory = computed(() => caseData.value.category || project.value?.category || '')
+const caseDescription = computed(() => caseData.value.description || project.value?.summary || '')
+const summary = computed(() => {
+  const key = `portfolio.items.${id}`
+  return te(key) ? t(key) : project.value?.summary || caseDescription.value
+})
 
 const taskHeading = computed(() => {
   const titleKey = `portfolioCases.${id}.taskTitle`
@@ -26,8 +40,12 @@ const solutionHeading = computed(() => {
 })
 
 useHead({
-  title: t(`portfolioCases.${id}.title`),
-  meta: [{ name: 'description', content: t(`portfolioCases.${id}.description`) }]
+  title: () => caseTitle.value,
+  meta: [
+    { name: 'description', content: () => caseDescription.value },
+    { property: 'og:title', content: () => caseTitle.value },
+    { property: 'og:description', content: () => caseDescription.value }
+  ]
 })
 </script>
 
@@ -36,16 +54,30 @@ useHead({
     <div class="container internal-hero detail-hero reveal">
       <div class="internal-hero-heading">
         <NuxtLink :to="localePath('/cases')" class="back-link"><ArrowLeft :size="17" /> {{ t('nav.projects') }}</NuxtLink>
-        <p class="section-kicker">{{ caseData.category }}</p>
-        <h1 class="section-title">{{ caseData.title }}</h1>
+        <p class="section-kicker">{{ caseCategory }}</p>
+        <h1 class="section-title">{{ caseTitle }}</h1>
       </div>
       <p class="internal-hero-note">{{ summary }}</p>
     </div>
 
+    <figure v-if="project?.imageUrl" class="container case-cover reveal">
+      <img
+        :src="project.imageUrl"
+        :alt="`${caseTitle} — ${caseCategory}`"
+        loading="lazy"
+        decoding="async"
+      >
+      <figcaption>
+        <span>{{ caseCategory }}</span>
+        <span v-if="project?.year">{{ project.year }}</span>
+        <span>SEOKONT / CONCEPT CASE</span>
+      </figcaption>
+    </figure>
+
     <div class="container">
       <section class="case-detail-grid reveal">
         <div class="case-main">
-          <p class="case-description">{{ caseData.description }}</p>
+          <p class="case-description">{{ caseDescription }}</p>
           <div class="case-block">
             <div class="detail-section-heading"><span>01</span><h2>{{ taskHeading }}</h2></div>
             <p>{{ caseData.task }}</p>

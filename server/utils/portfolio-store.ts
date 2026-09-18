@@ -12,9 +12,12 @@ interface R2Bucket { put: (key: string, value: Uint8Array, options?: unknown) =>
 interface CloudBindings { DB?: D1Database; FILES?: R2Bucket }
 
 const seed: PortfolioItem[] = [
-  { id: 'orion-estate', title: 'ORION ESTATE', category: 'WEB / CRM', summary: 'Сайт премиальной недвижимости с автоматическим распределением лидов между брокерами.', year: '2026', accent: '#d7ff45', imageKey: null, imageUrl: null, createdAt: '2026-07-20T10:00:00.000Z' },
-  { id: 'pulse-clinic', title: 'PULSE CLINIC', category: 'PRODUCT / AI', summary: 'Цифровая запись и AI-ассистент, который отвечает пациентам круглосуточно.', year: '2026', accent: '#9b8cff', imageKey: null, imageUrl: null, createdAt: '2026-06-11T10:00:00.000Z' },
-  { id: 'mono-market', title: 'MONO MARKET', category: 'E-COM / AUTOMATION', summary: 'Магазин с единой системой заказов, складом и автоматическими сценариями продаж.', year: '2025', accent: '#ff6b4a', imageKey: null, imageUrl: null, createdAt: '2025-12-03T10:00:00.000Z' }
+  { id: 'orion-estate', title: 'ORION ESTATE', category: 'WEB / CRM', summary: 'Сайт премиальной недвижимости с автоматическим распределением лидов между брокерами.', year: '2026', accent: '#d7ff45', imageKey: null, imageUrl: '/projects/orion-estate.svg', createdAt: '2026-07-20T10:00:00.000Z' },
+  { id: 'pulse-clinic', title: 'PULSE CLINIC', category: 'PRODUCT / AI', summary: 'Цифровая запись и AI-ассистент, который отвечает пациентам круглосуточно.', year: '2026', accent: '#9b8cff', imageKey: null, imageUrl: '/projects/pulse-clinic.svg', createdAt: '2026-06-11T10:00:00.000Z' },
+  { id: 'axiom-logistics', title: 'AXIOM LOGISTICS', category: 'LOGISTICS / AI', summary: 'Диспетчерська CRM з AI-пріоритезацією рейсів і кабінетом водія.', year: '2026', accent: '#4ad9ff', imageKey: null, imageUrl: '/projects/axiom-logistics.svg', createdAt: '2026-05-14T10:00:00.000Z' },
+  { id: 'lumen-edu', title: 'LUMEN EDU', category: 'EDTECH / CRM', summary: 'CRM онлайн-школи з AI-куратором і аналітикою утримання студентів.', year: '2026', accent: '#7dffb0', imageKey: null, imageUrl: '/projects/lumen-edu.svg', createdAt: '2026-03-08T10:00:00.000Z' },
+  { id: 'mono-market', title: 'MONO MARKET', category: 'E-COM / AUTOMATION', summary: 'Магазин с единой системой заказов, складом и автоматическими сценариями продаж.', year: '2025', accent: '#ff6b4a', imageKey: null, imageUrl: '/projects/mono-market.svg', createdAt: '2025-12-03T10:00:00.000Z' },
+  { id: 'nord-build', title: 'NORD BUILD', category: 'CONSTRUCTION / AI', summary: 'Кошториси, об’єкти та платежі в одній системі з AI-прорахунком вартості.', year: '2025', accent: '#ffd24a', imageKey: null, imageUrl: '/projects/nord-build.svg', createdAt: '2025-09-22T10:00:00.000Z' }
 ]
 
 function bindings(event: H3Event): CloudBindings {
@@ -31,15 +34,17 @@ async function ensureCloudDatabase(db: D1Database) {
       year TEXT NOT NULL,
       accent TEXT NOT NULL,
       image_key TEXT,
+      image_url TEXT,
       created_at TEXT NOT NULL
     )`),
     db.prepare('CREATE INDEX IF NOT EXISTS portfolio_created_at_idx ON portfolio(created_at DESC)')
   ])
+  try { await db.prepare('ALTER TABLE portfolio ADD COLUMN image_url TEXT').run() } catch {}
   const count = await db.prepare('SELECT id FROM portfolio LIMIT 1').all<{ id: string }>()
   if (!count.results?.length) {
     await db.batch(seed.map(item => db.prepare(
-      'INSERT INTO portfolio (id, title, category, summary, year, accent, image_key, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-    ).bind(item.id, item.title, item.category, item.summary, item.year, item.accent, null, item.createdAt)))
+      'INSERT INTO portfolio (id, title, category, summary, year, accent, image_key, image_url, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    ).bind(item.id, item.title, item.category, item.summary, item.year, item.accent, null, item.imageUrl || null, item.createdAt)))
   }
 }
 
@@ -52,7 +57,9 @@ function fromRow(row: any): PortfolioItem {
     year: row.year,
     accent: row.accent,
     imageKey: row.image_key || null,
-    imageUrl: row.image_key ? `/api/media/${encodeURIComponent(row.image_key)}` : null,
+    imageUrl: row.image_key
+      ? `/api/media/${encodeURIComponent(row.image_key)}`
+      : row.image_url || null,
     createdAt: row.created_at
   }
 }
@@ -86,15 +93,15 @@ export async function listPortfolio(event: H3Event) {
     return (rows.results || []).map(fromRow)
   }
   const items = await readLocal()
-  return items.map(item => ({ ...item, imageUrl: item.imageKey ? `/api/media/${encodeURIComponent(item.imageKey)}` : null }))
+  return items.map(item => ({ ...item, imageUrl: item.imageKey ? `/api/media/${encodeURIComponent(item.imageKey)}` : item.imageUrl || null }))
 }
 
 export async function addPortfolio(event: H3Event, item: PortfolioItem) {
   const { DB } = bindings(event)
   if (DB) {
     await ensureCloudDatabase(DB)
-    await DB.prepare('INSERT INTO portfolio (id, title, category, summary, year, accent, image_key, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
-      .bind(item.id, item.title, item.category, item.summary, item.year, item.accent, item.imageKey || null, item.createdAt).run()
+    await DB.prepare('INSERT INTO portfolio (id, title, category, summary, year, accent, image_key, image_url, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+      .bind(item.id, item.title, item.category, item.summary, item.year, item.accent, item.imageKey || null, item.imageKey ? null : item.imageUrl || null, item.createdAt).run()
     return
   }
   const items = await readLocal()

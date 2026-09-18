@@ -7,7 +7,7 @@
     "year": "2026",
     "accent": "#d7ff45",
     "imageKey": null,
-    "imageUrl": null,
+    "imageUrl": "/projects/orion-estate.svg",
     "createdAt": "2026-07-20T10:00:00.000Z"
   },
   {
@@ -18,8 +18,30 @@
     "year": "2026",
     "accent": "#9b8cff",
     "imageKey": null,
-    "imageUrl": null,
+    "imageUrl": "/projects/pulse-clinic.svg",
     "createdAt": "2026-06-11T10:00:00.000Z"
+  },
+  {
+    "id": "axiom-logistics",
+    "title": "AXIOM LOGISTICS",
+    "category": "LOGISTICS / AI",
+    "summary": "Диспетчерська CRM з AI-пріоритезацією рейсів і кабінетом водія.",
+    "year": "2026",
+    "accent": "#4ad9ff",
+    "imageKey": null,
+    "imageUrl": "/projects/axiom-logistics.svg",
+    "createdAt": "2026-05-14T10:00:00.000Z"
+  },
+  {
+    "id": "lumen-edu",
+    "title": "LUMEN EDU",
+    "category": "EDTECH / CRM",
+    "summary": "CRM онлайн-школи з AI-куратором і аналітикою утримання студентів.",
+    "year": "2026",
+    "accent": "#7dffb0",
+    "imageKey": null,
+    "imageUrl": "/projects/lumen-edu.svg",
+    "createdAt": "2026-03-08T10:00:00.000Z"
   },
   {
     "id": "mono-market",
@@ -29,7 +51,18 @@
     "year": "2025",
     "accent": "#ff6b4a",
     "imageKey": null,
-    "imageUrl": null,
+    "imageUrl": "/projects/mono-market.svg",
     "createdAt": "2025-12-03T10:00:00.000Z"
+  },
+  {
+    "id": "nord-build",
+    "title": "NORD BUILD",
+    "category": "CONSTRUCTION / AI",
+    "summary": "Кошториси, об’єкти та платежі в одній системі з AI-прорахунком вартості.",
+    "year": "2025",
+    "accent": "#ffd24a",
+    "imageKey": null,
+    "imageUrl": "/projects/nord-build.svg",
+    "createdAt": "2025-09-22T10:00:00.000Z"
   }
 ]

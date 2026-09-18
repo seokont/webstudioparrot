@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS portfolio (
   year TEXT NOT NULL,
   accent TEXT NOT NULL,
   image_key TEXT,
+  image_url TEXT,
   created_at TEXT NOT NULL
 );
 

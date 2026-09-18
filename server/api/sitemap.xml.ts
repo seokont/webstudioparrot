@@ -3,13 +3,13 @@ export default defineEventHandler((event) => {
   const origin = requestUrl.origin
   const locales = ['uk', 'en', 'he']
   const serviceSlugs = ['web-development', 'crm-development', 'ai-automation', 'ai-agents', 'integrations']
-  const portfolioSlugs = ['orion-estate', 'pulse-clinic', 'mono-market']
-  const pages = ['/', '/thank-you', '/services', '/portfolio']
+  const portfolioSlugs = ['orion-estate', 'pulse-clinic', 'axiom-logistics', 'lumen-edu', 'mono-market', 'nord-build']
+  const pages = ['/', '/thank-you', '/services', '/cases']
 
   const routes = [
     ...pages,
     ...serviceSlugs.map(slug => `/services/${slug}`),
-    ...portfolioSlugs.map(slug => `/portfolio/${slug}`)
+    ...portfolioSlugs.map(slug => `/cases/${slug}`)
   ]
 
   const lastmod = new Date().toISOString().slice(0, 10)
