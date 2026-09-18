@@ -36,6 +36,7 @@ const localePath = useLocalePath();
     <div class="container footer-row">
       <span>© {{ new Date().getFullYear() }} {{ t("footer.rights") }}</span>
       <span>{{ t("footer.services") }}</span>
+      <!-- - -->
       <!-- <NuxtLink :to="localePath('/admin')">ADMIN ↗</NuxtLink> -->
     </div>
   </footer>
