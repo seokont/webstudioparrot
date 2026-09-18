@@ -67,7 +67,7 @@ function fromRow(row: any): PortfolioItem {
 async function localPaths() {
   const { promises: fs } = await import('node:fs')
   const { resolve } = await import('node:path')
-  const dataDir = resolve(process.cwd(), '.data')
+  const dataDir = process.env.PORTFOLIO_DATA_DIR || resolve(process.cwd(), '.data')
   const uploadDir = resolve(dataDir, 'uploads')
   const dataFile = resolve(dataDir, 'portfolio.json')
   await fs.mkdir(uploadDir, { recursive: true })
@@ -85,6 +85,45 @@ async function writeLocal(items: PortfolioItem[]) {
   await fs.writeFile(dataFile, JSON.stringify(items, null, 2), 'utf8')
 }
 
+/**
+ * Serverless hosts (Vercel) mount the deployment read-only and never ship the
+ * git-ignored `.data` folder, so the file store cannot even be created there.
+ * In that case the projects bundled with the build are served instead.
+ */
+let fileStoreAvailable = true
+let fileStoreWarningLogged = false
+
+function bundledPortfolio() {
+  return seed.map(item => ({ ...item }))
+}
+
+function storageUnavailable(error: unknown, action: string) {
+  console.error(`[portfolio] ${action}: persistent storage is unavailable`, error)
+  throw createError({
+    statusCode: 503,
+    statusMessage: 'Сховище не налаштоване: на цьому хостингу проєкти доступні лише для читання'
+  })
+}
+
+async function readLocalOrSeed() {
+  if (fileStoreAvailable) {
+    try {
+      return await readLocal()
+    } catch (error) {
+      fileStoreAvailable = false
+      if (!fileStoreWarningLogged) {
+        fileStoreWarningLogged = true
+        console.warn(
+          '[portfolio] Local file storage is not writable (expected on Vercel). Serving the bundled project list instead. ' +
+          'Set PORTFOLIO_DATA_DIR or configure a D1/R2 binding to manage projects in production.',
+          error
+        )
+      }
+    }
+  }
+  return bundledPortfolio()
+}
+
 export async function listPortfolio(event: H3Event) {
   const { DB } = bindings(event)
   if (DB) {
@@ -92,7 +131,7 @@ export async function listPortfolio(event: H3Event) {
     const rows = await DB.prepare('SELECT * FROM portfolio ORDER BY created_at DESC').all<any>()
     return (rows.results || []).map(fromRow)
   }
-  const items = await readLocal()
+  const items = await readLocalOrSeed()
   return items.map(item => ({ ...item, imageUrl: item.imageKey ? `/api/media/${encodeURIComponent(item.imageKey)}` : item.imageUrl || null }))
 }
 
@@ -104,9 +143,13 @@ export async function addPortfolio(event: H3Event, item: PortfolioItem) {
       .bind(item.id, item.title, item.category, item.summary, item.year, item.accent, item.imageKey || null, item.imageKey ? null : item.imageUrl || null, item.createdAt).run()
     return
   }
-  const items = await readLocal()
-  items.unshift(item)
-  await writeLocal(items)
+  try {
+    const items = await readLocal()
+    items.unshift(item)
+    await writeLocal(items)
+  } catch (error) {
+    storageUnavailable(error, 'addPortfolio')
+  }
 }
 
 export async function removePortfolio(event: H3Event, id: string) {
@@ -119,10 +162,14 @@ export async function removePortfolio(event: H3Event, id: string) {
     if (imageKey) await deleteMedia(event, imageKey)
     return
   }
-  const items = await readLocal()
-  const item = items.find(entry => entry.id === id)
-  await writeLocal(items.filter(entry => entry.id !== id))
-  if (item?.imageKey) await deleteMedia(event, item.imageKey)
+  try {
+    const items = await readLocal()
+    const item = items.find(entry => entry.id === id)
+    await writeLocal(items.filter(entry => entry.id !== id))
+    if (item?.imageKey) await deleteMedia(event, item.imageKey)
+  } catch (error) {
+    storageUnavailable(error, 'removePortfolio')
+  }
 }
 
 export function formValue(parts: MultiPartData[], name: string) {
@@ -143,9 +190,13 @@ export async function saveMedia(event: H3Event, file: MultiPartData) {
   if (FILES) {
     await FILES.put(key, new Uint8Array(file.data), { httpMetadata: { contentType: file.type } })
   } else {
-    const { fs, resolve, uploadDir } = await localPaths()
-    await fs.writeFile(resolve(uploadDir, key), file.data)
-    await fs.writeFile(resolve(uploadDir, `${key}.type`), file.type, 'utf8')
+    try {
+      const { fs, resolve, uploadDir } = await localPaths()
+      await fs.writeFile(resolve(uploadDir, key), file.data)
+      await fs.writeFile(resolve(uploadDir, `${key}.type`), file.type, 'utf8')
+    } catch (error) {
+      storageUnavailable(error, 'saveMedia')
+    }
   }
   return key
 }
